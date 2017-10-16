@@ -8,6 +8,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
 
@@ -18,6 +21,10 @@ import java.util.Optional;
 public class Main extends Application {
 
     public static void doSomething(ActionEvent ae) {
+
+
+
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
@@ -42,7 +49,7 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage stage) throws Exception {
-
+        Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Saiyan-Sans.ttf"), 36);
         BorderPane root = new BorderPane();
 
         Scene scene = new Scene(root, 768, 768);
