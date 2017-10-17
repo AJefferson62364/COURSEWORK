@@ -2,6 +2,8 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -13,8 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
-
 import javax.xml.soap.Text;
+import java.io.FileInputStream;
 import java.util.Optional;
 
 
@@ -47,13 +49,24 @@ public class Main extends Application {
         }
 
     }
+
+    public static GraphicsContext gc;
     @Override
     public void start(Stage stage) throws Exception {
         Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Saiyan-Sans.ttf"), 36);
-        BorderPane root = new BorderPane();
 
+        BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 768, 768);
         scene.getStylesheets().add("stylesheet.css");
+
+        Canvas canvas = new Canvas();
+        canvas.setWidth(768);
+        canvas.setHeight(768);
+        root.getChildren().add(canvas);
+
+        gc = canvas.getGraphicsContext2D();
+        Image vegeta = new Image("vegeta.png");
+        Image goku = new Image("goku.png");
 
         VBox topPane = new VBox(20);
         root.setTop(topPane);
@@ -63,6 +76,17 @@ public class Main extends Application {
         topPane.setAlignment(Pos.CENTER);
         BorderPane.setAlignment(topPane, Pos.TOP_CENTER);
 
+        VBox leftPane = new VBox(20);
+        gc.drawImage(goku, 50,100);
+        root.setLeft(leftPane);
+        leftPane.setAlignment(Pos.CENTER);
+        BorderPane.setAlignment(leftPane, Pos.CENTER_LEFT);
+
+        VBox rightPane = new VBox(20);
+        gc.drawImage(vegeta, 550,170);
+        root.setLeft(rightPane);
+        rightPane.setAlignment(Pos.CENTER);
+        BorderPane.setAlignment(rightPane, Pos.CENTER_RIGHT);
 
         VBox centerPane = new VBox(10);
         Button centerButton1 = new Button("START");
