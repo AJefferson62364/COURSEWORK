@@ -63,8 +63,7 @@ public class ScoreService {
                 statement.setInt(3, itemToSave.getUserID());
                 statement.setInt(4, itemToSave.getQuizID());
                 database.executeUpdate(statement);
-            }
-            else {
+            } else {
                 PreparedStatement statement = database.newStatement("UPDATE quizdatabase SET ScoreID = ?, Score = ?, UserID = ?, QuizID = ? WHERE ScoreID = ?");
                 statement.setInt(1, itemToSave.getScoreID());
                 statement.setInt(2, itemToSave.getScore());
@@ -76,4 +75,5 @@ public class ScoreService {
             System.out.println("Database saving error: " + resultsException.getMessage());
         }
     }
+}
 

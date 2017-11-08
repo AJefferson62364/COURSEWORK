@@ -18,7 +18,7 @@ public class UserService {
 
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new Score(results.getInt("UserID"), results.getString("Username")));
+                        targetList.add(new User(results.getInt("UserID"), results.getString("Username")));
                     }
                 }
             }
@@ -49,6 +49,7 @@ public class UserService {
 
         return result;
     }
+
     public static void save(User itemToSave, DatabaseConnection database) {
 
         User existingItem = null;
@@ -60,10 +61,9 @@ public class UserService {
                 statement.setInt(1, itemToSave.getUserID());
                 statement.setString(2, itemToSave.getUsername());
                 database.executeUpdate(statement);
-            }
-            else {
+            } else {
                 PreparedStatement statement = database.newStatement("UPDATE quizdatabase SET userID = ?, Username = ? WHERE UserID = ?");
-                statement.setString(1, itemToSave.getUserID());
+                statement.setInt(1, itemToSave.getUserID());
                 statement.setString(2, itemToSave.getUsername());
                 database.executeUpdate(statement);
             }
@@ -71,4 +71,5 @@ public class UserService {
             System.out.println("Database saving error: " + resultsException.getMessage());
         }
     }
+}
 

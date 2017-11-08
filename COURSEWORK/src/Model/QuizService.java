@@ -27,9 +27,9 @@ public class QuizService {
         }
     }
 
-    public static Questions selectById(int id, DatabaseConnection database) {
+    public static Quiz selectById(int id, DatabaseConnection database) {
 
-        Questions result = null;
+        Quiz result = null;
 
         PreparedStatement statement = database.newStatement("SELECT QuizID, Difficulty Level FROM Quiz WHERE QuizID = ?");
 
@@ -49,3 +49,5 @@ public class QuizService {
 
         return result;
     }
+
+}
