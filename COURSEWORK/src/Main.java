@@ -1,3 +1,4 @@
+import Model.DatabaseConnection;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -22,10 +23,9 @@ import java.util.Optional;
 
 public class Main extends Application {
 
+    public static DatabaseConnection database;
+
     public static void doSomething(ActionEvent ae) {
-
-
-
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
@@ -53,6 +53,8 @@ public class Main extends Application {
     public static GraphicsContext gc;
     @Override
     public void start(Stage stage) throws Exception {
+        database = new DatabaseConnection("quizdatabase.db");
+
         Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Saiyan-Sans.ttf"), 36);
 
         BorderPane root = new BorderPane();
