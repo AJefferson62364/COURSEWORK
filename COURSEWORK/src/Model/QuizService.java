@@ -9,7 +9,7 @@ public class QuizService {
 
     public static void selectAll(List<Quiz> targetList, DatabaseConnection database) {
 
-        PreparedStatement statement = database.newStatement("SELECT QuizID, Difficulty Level FROM quizdatabase ORDER BY x");
+        PreparedStatement statement = database.newStatement("SELECT QuizID, DifficultyLevel FROM quizdatabase ORDER BY x");
 
         try {
             if (statement != null) {
@@ -18,7 +18,7 @@ public class QuizService {
 
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new Quiz(results.getInt("QuizID"), results.getString("Difficulty Level")));
+                        targetList.add(new Quiz(results.getInt("QuizID"), results.getString("DifficultyLevel")));
                     }
                 }
             }
@@ -31,7 +31,7 @@ public class QuizService {
 
         Quiz result = null;
 
-        PreparedStatement statement = database.newStatement("SELECT QuizID, Difficulty Level FROM Quiz WHERE QuizID = ?");
+        PreparedStatement statement = database.newStatement("SELECT QuizID, DifficultyLevel FROM Quiz WHERE QuizID = ?");
 
         try {
             if (statement != null) {
@@ -40,7 +40,7 @@ public class QuizService {
                 ResultSet results = database.runQuery(statement);
 
                 if (results != null) {
-                    result = new Quiz(results.getInt("QuizID"), results.getString("Difficulty Level"));
+                    result = new Quiz(results.getInt("QuizID"), results.getString("DifficultyLevel"));
                 }
             }
         } catch (SQLException resultsException) {
