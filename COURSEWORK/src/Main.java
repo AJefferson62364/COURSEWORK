@@ -1,14 +1,15 @@
 import Model.DatabaseConnection;
+import Model.Quiz;
+import Model.Score;
+import Model.User;
+import controller.Controller;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
@@ -23,43 +24,30 @@ import java.util.Optional;
 
 public class Main extends Application {
 
+    private static Controller controller;
     public static DatabaseConnection database;
 
-    public static void doSomething(ActionEvent ae) {
+    private static ListView<User> userList = new ListView<>();
+    private static ListView<Score> scoreList = new ListView<>();
+    private static ListView<Quiz> quizList = new ListView<>();
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText("This is not ready yet!!");
-        alert.showAndWait();
+    public static void main(String[] args) {
+        controller = new Controller();
+        launch(args);
     }
 
-
-    public static void exitPrompt(ActionEvent ae) {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Are you sure you want to exit?");
-
-        Optional result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            System.exit(0);
-        } else {
-            ae.consume();
-        }
-
-    }
 
     public static GraphicsContext gc;
     @Override
     public void start(Stage stage) throws Exception {
-        database = new DatabaseConnection("quizdatabase.db");
+
+        database = new DatabaseConnection("/resources/quizdatabase.db");
 
         Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Saiyan-Sans.ttf"), 36);
 
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 768, 768);
-        scene.getStylesheets().add("stylesheet.css");
+        scene.getStylesheets().add("/resources/stylesheet.css");
 
         Canvas canvas = new Canvas();
         canvas.setWidth(768);
@@ -67,8 +55,8 @@ public class Main extends Application {
         root.getChildren().add(canvas);
 
         gc = canvas.getGraphicsContext2D();
-        Image vegeta = new Image("vegeta.png");
-        Image goku = new Image("goku.png");
+        Image vegeta = new Image("/resources/vegeta.png");
+        Image goku = new Image("/resources/goku.png");
 
         VBox topPane = new VBox(20);
         root.setTop(topPane);
@@ -93,21 +81,21 @@ public class Main extends Application {
         VBox centerPane = new VBox(10);
         Button centerButton1 = new Button("START");
         centerButton1.getStyleClass().add("funky_button");
-        centerButton1.setOnAction((ActionEvent ae) -> doSomething(ae));
+        centerButton1.setOnAction((ActionEvent ae) -> controller.doSomething(ae));
         centerPane.getChildren().add(centerButton1);
         Button centerButton2 = new Button("VIEW HIGHSCORES");
         centerButton2.getStyleClass().add("funky_button");
-        centerButton2.setOnAction((ActionEvent ae) -> doSomething(ae));
+        centerButton2.setOnAction((ActionEvent ae) -> controller.doSomething(ae));
         centerPane.getChildren().add(centerButton2);
         Button centerButton3 = new Button("QUIT");
         centerButton3.getStyleClass().add("funky_button");
-        centerButton3.setOnAction((ActionEvent ae) -> exitPrompt(ae));
+        centerButton3.setOnAction((ActionEvent ae) -> controller.exitPrompt(ae));
         centerPane.getChildren().add(centerButton3);
         root.setCenter(centerPane);
         centerPane.setAlignment(Pos.CENTER);
         BorderPane.setAlignment(centerPane, Pos.CENTER);
 
-        stage.setTitle("Hello World");
+        stage.setTitle("Quiz");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -115,7 +103,5 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 }
