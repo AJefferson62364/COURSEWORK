@@ -43,7 +43,7 @@ public class Controller {
         userList.getItems().clear();
         UserService.selectAll(userList.getItems(), database);
 
-        
+
 
    }
 
@@ -77,7 +77,7 @@ public class Controller {
     public void createnewScore() {
 
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Add your Score");
+        dialog.setTitle("Input your username to add your score");
         dialog.setHeaderText(null);
         dialog.setContentText("Username:");
         Optional<String> result = dialog.showAndWait();
