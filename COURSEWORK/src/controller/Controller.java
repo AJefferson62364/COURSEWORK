@@ -43,6 +43,28 @@ public class Controller {
         userList.getItems().clear();
         UserService.selectAll(userList.getItems(), database);
 
+       if (selecteduserID != 0) {
+           for (int n = 0; n < userList.getItems().size(); n++) {
+               if (userList.getItems().get(n).getUserID() == selecteduserID) {
+                   userList.getSelectionModel().select(n);
+                   userList.getFocusModel().focus(n);
+                   userList.scrollTo(n);
+                   break;
+               }
+           }
+       }
+
+       if (selectedscoreID != 0) {
+           for (int n = 0; n < scoreList.getItems().size(); n++) {
+               if (scoreList.getItems().get(n).getScoreID() == selectedscoreID) {
+                   scoreList.getSelectionModel().select(n);
+                   scoreList.getFocusModel().focus(n);
+                   scoreList.scrollTo(n);
+                   break;
+               }
+           }
+       }
+
 
 
    }
@@ -74,7 +96,7 @@ public class Controller {
         alert.showAndWait();
     }
 
-    public void createnewScore() {
+  /*  public void createnewScore() {
 
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Input your username to add your score");
@@ -83,15 +105,15 @@ public class Controller {
         Optional<String> result = dialog.showAndWait();
 
         if (result.isPresent() && !result.get().equals("")){
-            Pizza newPizza = new Pizza(0, result.get());
-            PizzaService.save(newPizza, database);
+            User newUser = new User(0, result.get());
+            UserService.save(newUser, database);
 
-            Topping selectedTopping = toppingList.getSelectionModel().getSelectedItem();
-            updateLists(database.lastNewId(), selectedTopping != null ? selectedTopping.getId() : 0);
+            Score selectedScore = scoreList.getSelectionModel().getSelectedItem();
+            updateLists(database.lastNewId(), selectedScore != null ? selectedScore.getId() : 0);
         }
         else {
             displayError("No name provided.");
         }
 
-    }
+    }*/
 }

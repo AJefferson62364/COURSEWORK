@@ -32,7 +32,7 @@ public class Main extends Application {
     private static ListView<Quiz> quizList = new ListView<>();
 
     public static void main(String[] args) {
-        controller = new Controller();
+        controller = new Controller(userList, scoreList, quizList);
         launch(args);
     }
 
