@@ -30,7 +30,7 @@ public class Controller {
         this.quizList = quizList;
 
         database = new DatabaseConnection("/resources/quizdatabase.db");
-        updateLists(0, 0);
+        //updateLists(0, 0);
     }
 
    @SuppressWarnings("Duplicates")
