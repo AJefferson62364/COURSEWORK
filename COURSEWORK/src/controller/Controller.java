@@ -7,6 +7,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.Pane;
+import resources.ActualQuiz;
+import resources.ViewHighscores;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -85,6 +88,14 @@ public class Controller {
             ae.consume();
         }
 
+    }
+
+    public static void openNewStage(Pane parent){
+        ActualQuiz newStage = new ActualQuiz(parent);
+    }
+
+    public static void openNewStage2(Pane parent){
+        ViewHighscores newStage = new ViewHighscores(parent);
     }
 
     public static void doSomething(ActionEvent ae) {

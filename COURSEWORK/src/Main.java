@@ -15,9 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
-import javax.xml.soap.Text;
 import java.io.FileInputStream;
 import java.util.Optional;
 
@@ -81,11 +79,11 @@ public class Main extends Application {
         VBox centerPane = new VBox(10);
         Button centerButton1 = new Button("START");
         centerButton1.getStyleClass().add("funky_button");
-        centerButton1.setOnAction((ActionEvent ae) -> controller.doSomething(ae));
+        centerButton1.setOnAction((ActionEvent ae) -> controller.openNewStage(root));
         centerPane.getChildren().add(centerButton1);
         Button centerButton2 = new Button("VIEW HIGHSCORES");
         centerButton2.getStyleClass().add("funky_button");
-        centerButton2.setOnAction((ActionEvent ae) -> controller.doSomething(ae));
+        centerButton2.setOnAction((ActionEvent ae) -> controller.openNewStage2(root));
         centerPane.getChildren().add(centerButton2);
         Button centerButton3 = new Button("QUIT");
         centerButton3.getStyleClass().add("funky_button");
@@ -95,7 +93,7 @@ public class Main extends Application {
         centerPane.setAlignment(Pos.CENTER);
         BorderPane.setAlignment(centerPane, Pos.CENTER);
 
-        stage.setTitle("Quiz");
+        stage.setTitle("Dragon Ball Quiz");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
