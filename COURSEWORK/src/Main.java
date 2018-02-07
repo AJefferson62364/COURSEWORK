@@ -39,7 +39,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        database = new DatabaseConnection("/resources/quizdatabase.db");
+        database = new DatabaseConnection("/Docs/College/Computing/COURSEWORK/COURSEWORK/src/resources/quizdatabase.db");
 
         Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Saiyan-Sans.ttf"), 36);
 

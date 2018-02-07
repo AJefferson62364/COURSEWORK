@@ -1,5 +1,6 @@
 package resources;
 
+import Model.DatabaseConnection;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -17,7 +18,11 @@ public class ViewHighscores {
         start(stage);
     }
 
+    public static DatabaseConnection database;
+
     public void start(Stage stage) {
+
+        database = new DatabaseConnection("/Docs/College/Computing/COURSEWORK/COURSEWORK/src/resources/quizdatabase.db");
 
         Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Saiyan-Sans.ttf"), 36);
 

@@ -32,7 +32,7 @@ public class Controller {
         this.scoreList = scoreList;
         this.quizList = quizList;
 
-        database = new DatabaseConnection("/resources/quizdatabase.db");
+        database = new DatabaseConnection("/Docs/College/Computing/COURSEWORK/COURSEWORK/src/resources/quizdatabase.db");
         //updateLists(0, 0);
     }
 
